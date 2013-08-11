@@ -34,31 +34,24 @@
         oldmap.setMap(map);
         
         // Now putting 
-        /*var image = {
-            url: 'NRLogo.png',
-            // This marker is 20 pixels wide by 32 pixels tall.
-            //size: new google.maps.Size(35, 35),
-            // The origin for this image is 0,0.
-            //origin: new google.maps.Point(0,0),
-            // The anchor for this image is the base of the flagpole at 0,32.
-            //anchor: new google.maps.Point(0, 32)
-        };
-        var myLatLng = new google.maps.LatLng(32.293910, -64.785157);
-        var NRMarker = new google.maps.Marker({
+        var myLatLng = new google.maps.LatLng( 32.323515, -64.737031);
+        var mainAquariumMarker = new google.maps.Marker({
           position: myLatLng,
           map: map,
-          icon: image,
-          scaledSize: new google.maps.Size(20, 32)
+          //scaledSize: new google.maps.Size(20, 32)
         });
         
         //info for NR marker
         var contentString = '<div id="content">'+
             '<div id="siteNotice">'+
             '</div>'+
-            '<h1 id="firstHeading" class="firstHeading">North Rock</h1>'+
+            '<h1 id="firstHeading" class="firstHeading">Aquarium</h1>'+
             '<div id="bodyContent">'+
-            '<p><b>North Rock Communications</b>, is an ISP in Bermuda that has recently been merged with the company Logic.</p>'+
-            '<p>Please click <a href="http://www.northrock.bm">here</a> to learn more about NRC.</p>'+
+            '<p>With over 200 native species of colourful fishes and delicate invertebrates, Aquarium visitors explore Bermuda\'s diverse marine communities in numerous naturalistc displays, from the deep open ocean and spectacular coral reefs to shallow coastal waters. Look for parrotfish, jacks, groupers, triggerfish, angelfish and squirrelfish and eels.</p>'+
+            '</div>'+
+            '<h1 id="firstHeading" class="firstHeading">North Rock Exhibit</h1>'+
+            '<div id="bodyContent">'+
+            '<p>Our 140,000-gallon signature exhibit, North Rock, offers a breathtaking look at a living replica of one of the island\'s most stunning natural coral reefs. Experience a dive to one of the island\'s most popular sites - without getting wet! You can even climb into a Plexiglas bubble that provides the feeling of diving in a coral cave. Based on a local habitat famed for large schools of grazing fishes, purple sea fans and gardens of brain, star and branch corals, the North Rock exhibit features barracuda, sharks, and groupers.</p>'+
             '</div>'+
             '</div>';
             
@@ -67,9 +60,9 @@
         });
 
         // Clicks on the NR marker
-        google.maps.event.addListener(NRMarker, 'click', function() {
-            infowindow.open(map, NRMarker);
-        });*/
+        google.maps.event.addListener(mainAquariumMarker, 'click', function() {
+            infowindow.open(map, mainAquariumMarker);
+        });
       }
       google.maps.event.addDomListener(window, 'load', initialize);
     </script>
