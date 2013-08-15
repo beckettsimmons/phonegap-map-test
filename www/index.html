@@ -6,15 +6,57 @@
       html { height: 100% }
       body { height: 100%; margin: 0; padding: 0 }
       #map-canvas { height: 100% }
+      
+      
+      #legend {
+        background: #FFF;
+        padding: 10px;
+        margin: 5px;
+        font-size: 12px;
+        font-family: Arial, sans-serif;
+      }
+
     </style>
     <script type="text/javascript"
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyChynOqg3ETEX9dwmPCzpiDlgVuS2_CDDY&sensor=false">
     </script>
     <script type="text/javascript">
+    function createMarker (title, content, cords, map){
+        // Now putting 
+        var tempLatLng = new google.maps.LatLng( cords[0], cords[1]);
+        var tempMarker = new google.maps.Marker({
+          position: tempLatLng,
+          map: map,
+          //scaledSize: new google.maps.Size(20, 32)
+        });
+        
+        //info for NR marker
+        var contentString = '<div id="content">'+
+            '<div id="siteNotice">'+
+            '</div>'+
+            '<h1 id="firstHeading" class="firstHeading">' + title + '</h1>'+
+            '<div id="bodyContent">'+
+            '<p>' +content + '</p>'+
+            '</div>'+
+            '</div>';
+            
+        var tempInfoWindow = new google.maps.InfoWindow({
+            content: contentString
+        });
+
+        // Clicks on the NR marker
+        google.maps.event.addListener(tempMarker, 'click', function() {
+            tempInfoWindow.open(map, tempMarker);
+        });
+        
+        
+    }
+
+
       function initialize() {
         var mapOptions = {
           center: new google.maps.LatLng(32.323543,-64.737718),//45.518970, -122.672899),//
-          zoom: 18,
+          zoom: 20,
           mapTypeId: google.maps.MapTypeId.SATELLITE
           //mapTypeId: google.maps.MapTypeId.ROADMAP
         };
@@ -32,6 +74,7 @@
             "aquariumArial.jpg",
             imageBounds);
         oldmap.setMap(map);
+        
         
         // Now putting 
         var myLatLng = new google.maps.LatLng( 32.323515, -64.737031);
@@ -63,11 +106,70 @@
         google.maps.event.addListener(mainAquariumMarker, 'click', function() {
             infowindow.open(map, mainAquariumMarker);
         });
+        
+        createMarker("Natural History Museum", 
+                        "Permanent and changing exhibits in our Natural History Museum trace Bermuda's geological formation and ecological development, and highlight the island's role in the migration of Humpback Whales, pelagic fishes, marine turtles and numerous species of birds.",
+                        [32.323516,-64.737577], map);
+        createMarker("Islands of Madagascar", 
+                        "Who can resist adorable ring-tailed lemurs? BAMZ's population of these animals from Madagascar represents their island nation well. Madagascar is home to a wide variety of species found nowhere else on Earth. The endemic Madagascar animals developed in isolation on one of the world’s largest islands. Visit our newest walk-through exhibit and come face to face with lemurs, fossa, chameleons and many more wonderous animals from this amazing island.",
+                        [32.323632,-64.738154], map);
+        createMarker("Harbour Seals", 
+                        "Our resident Harbour Seals, Archie, Charlotte, Calico, Ariel and Pebbles, are among our best ambassadors for the ocean. Their playful antics are a helpful reminder that the ocean is home to many important and wonderful creatures. Daily seal feedings at 9:00 a.m., 1:30 p.m. and 4:00 p.m. help us bring important aquatic conservation and educational messages to our visitors.",
+                        [32.323482,-64.737379], map);
+        createMarker("Green Turtles", 
+                        "Bermuda hosts one of the healthiest populations of Green Turtles in the Atlantic basin and may be the best site in the world to study younger turtles in their natural habitat. Now endangered worldwide, the Green Turtle once nested in Bermuda. Over-exploited by early Bermudian settlers for food, oil and its shell, our nesting population was decimated by the 1900s, despite the island drafting one of the earliest attempts at conservation legislation in the world to protect these sea turtles. <br/><br/>Sea turtles have enjoyed complete protection in Bermuda since 1972 when a moratorium was placed on the taking of all marine turtles in Bermuda. Our Green Turtle exhibit introduces visitors to the Bermuda Turtle Project and offers an excellent opportunity to focus on the importance of conservation and education to the protection of our oceanic island environment.",
+                        [32.323294,-64.736816], map);
+        createMarker("Local Tails", 
+                        "Our Local Tails exhibit showcases native, endemic and introduced marine and terrestrial species of Bermuda. With doors to lift, buttons to push, and beautiful tanks to explore, you can learn about Bermuda's wonders and the fragile nature of our oceanic island environment. Explore a beautiful recreation of a coastal tidal pool where you'll find mollusks, sponges, even small lobsters. You can find more of Bermuda's colourful and delicate corals, sponges and juvenile fish in our spectacular 95-gallon Tabletop Tank, where there's always something new to see.",
+                        [32.323677,-64.73754], map);
+        createMarker("Discovery Room", 
+                        "With its ever-changing marine and terrestrial exhibits and regular storytelling sessions, the Discovery Room is an adult/children's activity centre designed for our younger visitors. It's here that we can help foster children's natural wonder at the living world and help establish the building blocks of a meaningful conservation ethic.",
+                        [32.32375,-64.737403], map);
+        createMarker("Discovery Cove", 
+                        "Jump in with both feet - and hands - to experience the wonders of the Discovery Cove. This outdoor area encourages children to explore the environment in very tactile ways through play.",
+                        [32.323865,-64.737513], map);
+        createMarker("Islands of the Caribbean", 
+                        "Enter our Caribbean Exhibit to be transported to our neighbouring region to the south. The Caribbean Exhibit is a vast flight cage, where the animals roam free and people are confined to a meandering path. The trees, water and exhibit floor are alive with mammals, including our golden lion tamarins and acouchi, as well as species of fish, birds and reptiles. Learn about the natural heritage of the Caribbean region, and how wind and water, as well as people and animals, have brought species from the Caribbean to Bermuda.",
+                        [32.323754,-64.738749], map);
+        createMarker("Caribbean Pink Flamingos", 
+                        "Flamingos have been breeding successfully at BAMZ since the 1950s, and we have shared our success with other zoos. A diet including shrimp gives the flamingos the distinctive pink hue, which contributes to their status as one of our most frequently photographed animals.",
+                        [32.323627,-64.738529], map);
+        createMarker("Islands of Australasia", 
+                        "When you go through the doors of our Australasia Exhibit, you're immersed in a different world. Parma wallabies, tree kangaroos, Asian small-clawed otters, birds, bats and even mouse deer surround you. Learn where these and other animals come from, as well as how they live and what they eat. Several animals in this exhibit are part of the international Species Survival Plan.",
+                        [32.323752,-64.738312], map);
+        createMarker("Galapagos Exhibit", 
+                        "BAMZ visitors are always eager to see the Galapagos tortoises, which occupy a large outdoor space near our Caribbean Exhibit. American businessman and adventurer Vincent Astor, a frequent Bermuda visitor and BAMZ friend, first brought Galapagos tortoises to our facility in the 1930s. Today's visitors continue to marvel at these enormous animals and children enjoy having photos taken with them under the supervision of our zookeepers.",
+                        [32.32375,-64.738473], map);
+        createMarker("American Alligator", 
+                        "The star of our Reptile Exhibit is Oscar the alligator. Oscar has been at BAMZ for as long as anyone can remember. Oscar is still much of the time, but sometimes surprises zookeepers and visitors with his agility. He's also capable of emitting a mighty roar, if he's hungry - which isn't often, as alligators do not feed frequently.",
+                        [32.323786,-64.737537], map);                
+                        
+                        
+                        
+                        
+                        
+        // Create the legend and display on the map
+        var legend = document.createElement('div');
+        legend.id = 'legend';
+        var content = [];
+        content.push('<h3>BAMZ Map</h3>');
+        content.push('<p><a href="">Go Back</a></p>');
+        legend.innerHTML = content.join('');
+        legend.index = 1;
+        map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(legend);
+
+        
+
       }
+      
       google.maps.event.addDomListener(window, 'load', initialize);
     </script>
   </head>
   <body>
     <div id="map-canvas"/>
+    <div id="legend">
+        <h3>Back Home</h3>
+    </div>
+
   </body>
 </html>
